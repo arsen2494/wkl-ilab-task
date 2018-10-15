@@ -3,12 +3,15 @@
 
     angular
         .module('app')
-        .factory('UserService', ['$http', function ($http) {
+        .factory('UserService', ['$http', '$rootScope', function ($http, $rootScope) {
             const userServiceinstance = {};
 
             userServiceinstance.me = function () {
-                return $http
-                    .get('/api/auth/me');
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        resolve($rootScope.currentUser);
+                    }, 3000);
+                })
             };
 
             return userServiceinstance;
