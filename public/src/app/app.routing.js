@@ -3,7 +3,7 @@
 
     angular
         .module('app')
-        .config(['$stateProvider', '$locationProvider', function ($stateProvider, $locationProvider) {
+        .config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
             const baseState = {
                 name: 'base',
                 url: '/',
@@ -12,17 +12,20 @@
             const loginState = {
                 name: 'login',
                 url: '/login',
-                component: 'login'
+                component: 'login',
+                nonAuth: true
             };
             const forgotPasswordState = {
                 name: 'forgot-password',
                 url: '/forgot-password',
-                component: 'forgotPassword'
+                component: 'forgotPassword',
+                nonAuth: true
             };
             const dashboardState = {
                 name: 'dashboard',
                 url: '/dashboard',
-                component: 'dashboard'
+                component: 'dashboard',
+                auth: true
             };
 
             $locationProvider.html5Mode(true);
@@ -30,5 +33,6 @@
             $stateProvider.state(loginState);
             $stateProvider.state(forgotPasswordState);
             $stateProvider.state(dashboardState);
+            $urlRouterProvider.otherwise("/login");
         }]);
 })();

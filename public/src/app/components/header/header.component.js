@@ -5,7 +5,6 @@
         .module('app')
         .controller('HeaderCtrl', ['$scope', '$location', 'AuthService', function ($scope, $location, AuthService) {
             $scope.onLogout = onLogout;
-            $scope.currentUser = AuthService.currentUser;
 
             function onLogout() {
                 AuthService.logout();

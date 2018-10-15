@@ -20,14 +20,12 @@
 
             return authTokenServiceInstance;
         }])
-        .factory('AuthService', ['$http', '$window', '$location', 'AuthTokenService', function ($http, $window, $location, AuthTokenService) {
+        .factory('AuthService', ['$rootScope', '$http', '$window', '$location', 'AuthTokenService', function ($rootScope, $http, $window, $location, AuthTokenService) {
             const authServiceInstance = {};
-
-            authServiceInstance.currentUser = null;
 
             function setAuth(user) {
                 AuthTokenService.setToken(user);
-                authServiceInstance.currentUser = user;
+                $rootScope.currentUser = user;
             }
 
             function decodeUser() {
@@ -55,11 +53,9 @@
             authServiceInstance.initAuth = function () {
                 if (!this.isLoggedIn()) {
                     setAuth(null);
-                    $location.path('/login');
                 } else {
                     const user = this.getCurrentUser();
                     setAuth(user);
-                    $location.path('/dashboard');
                 }
             };
 

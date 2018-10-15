@@ -2,12 +2,14 @@
     'use strict';
 
     angular
-        .module('app', ['ui.router'])
+        .module('app', ['ui.router', 'ui.router.state.events'])
         .run(run);
 
-    run.$inject = ['AuthService'];
+    run.$inject = ['$rootScope', 'AuthService', 'AuthGuard'];
 
-    function run(AuthService) {
+    function run($rootScope, AuthService, AuthGuard) {
         AuthService.initAuth();
+
+        $rootScope.$on('$stateChangeStart', AuthGuard.handleRouteChanges);
     }
 })();
