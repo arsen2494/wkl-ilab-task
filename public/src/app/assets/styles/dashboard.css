@@ -1,0 +1,8 @@
+.tab-content {
+    border: 1px solid #dee2e6;
+    border-top: none;
+}
+
+.nav-item {
+    cursor: pointer;
+}

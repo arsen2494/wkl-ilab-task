@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="p-2 dashboard w-100">
+        <nav>
+            <ul class="nav nav-tabs">
+                <li class="nav-item" ng-click="changeTab(tabs.PROFILE)">
+                    <a class="nav-link" ng-class="{'active': currentTab === tabs.PROFILE}">Profile</a>
+                </li>
+                <li class="nav-item" ng-click="changeTab(tabs.EDIT_PROFILE)">
+                    <a class="nav-link" ng-class="{'active': currentTab === tabs.EDIT_PROFILE}">Edit Profile</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="tab-content p-5">
+            <profile ng-show="currentTab === tabs.PROFILE"></profile>
+            <edit-profile ng-show="currentTab === tabs.EDIT_PROFILE"></edit-profile>
+        </div>
+    </div>
+</div>

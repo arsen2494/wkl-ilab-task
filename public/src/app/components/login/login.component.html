@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-md-6 offset-3 p-5">
+        <h1>Login</h1>
+        <form novalidate name="loginForm" ng-submit="onSubmit()">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                       placeholder="Enter email" ng-model="email">
+                <small id="emailHelp" class="form-text text-muted">Hint: user@mail.com</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1"
+                       placeholder="Password" ng-model="password">
+                <small id="passwordHelp" class="form-text text-muted">Hint: password</small>
+            </div>
+            <p><a ui-sref="forgot-password">Forgot your password?</a></p>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
