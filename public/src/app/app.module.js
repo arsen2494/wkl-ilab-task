@@ -2,7 +2,11 @@
     'use strict';
 
     angular
-        .module('app', ['ui.router', 'ui.router.state.events'])
+        .module('app', [
+            'ui.router',
+            'ui.router.state.events',
+            'toastr'
+        ])
         .run(run);
 
     run.$inject = ['$rootScope', 'AuthService', 'AuthGuard'];

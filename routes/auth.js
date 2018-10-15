@@ -1,19 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const user = require('../user');
 
 router.post('/login', (req, res) => {
     // Mock Data
     const email = req.body.email;
     const password = req.body.password;
     const birthday = new Date(2001, 1);
-    const user = {
-        id: 1,
-        email: 'user@mail.com',
-        password: "password",
-        name: 'John',
-        age: new Date().getFullYear() - birthday.getFullYear(),
-        birthday
-    };
+
+    user.age = new Date().getFullYear() - birthday.getFullYear();
+    user.birthday = birthday;
 
     if (email === user.email && password === user.password) {
         delete user.password;

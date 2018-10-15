@@ -20,7 +20,7 @@
 
             return authTokenServiceInstance;
         }])
-        .factory('AuthService', ['$rootScope', '$http', '$window', '$location', 'AuthTokenService', function ($rootScope, $http, $window, $location, AuthTokenService) {
+        .factory('AuthService', ['$rootScope', '$http', '$window', '$location', 'toastr', 'AuthTokenService', function ($rootScope, $http, $window, $location, toastr, AuthTokenService) {
             const authServiceInstance = {};
 
             function setAuth(user) {
@@ -37,6 +37,7 @@
                     .post('/api/auth/login', credentials)
                     .then(function (data) {
                         setAuth(data.data.user);
+                        toastr.success(`Hello ${$rootScope.currentUser.name}!`, 'Success!');
 
                         return data;
                     });
