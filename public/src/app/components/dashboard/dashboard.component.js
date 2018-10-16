@@ -4,6 +4,7 @@
     angular
         .module('app')
         .controller('DashboardCtrl', ['$scope', 'SpinnerService', 'UserService', function ($scope, SpinnerService, UserService) {
+            SpinnerService.showSpinner();
             $scope.tabs = {
                 PROFILE: 'profile',
                 EDIT_PROFILE: 'edit-profile'
@@ -22,6 +23,7 @@
                     .me()
                     .then(function (data) {
                         $scope.user = data;
+                        SpinnerService.hideSpinner();
                     });
             }
 

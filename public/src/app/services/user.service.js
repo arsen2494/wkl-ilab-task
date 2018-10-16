@@ -3,15 +3,17 @@
 
     angular
         .module('app')
-        .factory('UserService', ['$http', '$rootScope', function ($http, $rootScope) {
+        .factory('UserService', ['$q', '$rootScope', function ($q, $rootScope) {
             const userServiceinstance = {};
 
             userServiceinstance.me = function () {
-                return new Promise(resolve => {
-                    setTimeout(() => {
-                        resolve($rootScope.currentUser);
-                    }, 3000);
-                })
+                const defer = $q.defer();
+
+                setTimeout(() => {
+                    defer.resolve($rootScope.currentUser);
+                }, 3000);
+
+                return defer.promise;
             };
 
             return userServiceinstance;
