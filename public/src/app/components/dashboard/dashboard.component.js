@@ -3,30 +3,18 @@
 
     angular
         .module('app')
-        .controller('DashboardCtrl', ['$scope', 'SpinnerService', 'UserService', function ($scope, SpinnerService, UserService) {
-            SpinnerService.showSpinner();
+        .controller('DashboardCtrl', ['$scope', function ($scope) {
             $scope.tabs = {
                 PROFILE: 'profile',
                 EDIT_PROFILE: 'edit-profile'
             };
             $scope.currentTab = $scope.tabs.PROFILE;
             $scope.changeTab = changeTab;
-
-            me();
+            $scope.$on('changeTab', () => changeTab($scope.tabs.PROFILE));
 
             function changeTab(tab) {
                 $scope.currentTab = tab;
             }
-
-            function me() {
-                UserService
-                    .me()
-                    .then(function (data) {
-                        $scope.user = data;
-                        SpinnerService.hideSpinner();
-                    });
-            }
-
         }])
         .component('dashboard', {
             templateUrl: './src/app/components/dashboard/dashboard.component.html',

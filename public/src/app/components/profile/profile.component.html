@@ -5,10 +5,10 @@
     <div class="col-md-1"></div>
     <div class="col-md-6">
         <h3>Account details</h3>
-        <p>Name: NAME</p>
-        <P>Age: AGE</P>
-        <p>Birthday: BIRTHDAY</p>
-        <p>Day of next notification: DAY</p>
-        <p>Day of login: DAY</p>
+        <p>Name: {{ profile.name }}</p>
+        <P>Age: {{ profile.age }}</P>
+        <p>Birthday: {{ profile.birthday | date:'longDate' }}</p>
+        <p>Day of next notification: {{ profile.dayOfNextNotification | date:'longDate' }}</p>
+        <p>Day of login: {{ profile.dayOfLogin | date:'longDate' }}</p>
     </div>
 </div>

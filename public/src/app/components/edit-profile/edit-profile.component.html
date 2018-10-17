@@ -1,17 +1,13 @@
 <div>
     <h3>Edit Profile</h3>
-    <form>
+    <form novalidate name="form" ng-submit="onSubmit()">
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter name">
-        </div>
-        <div class="form-group">
-            <label for="age">Age</label>
-            <input type="text" class="form-control" id="age" placeholder="Enter age">
+            <input ng-model="profile.name" type="text" class="form-control" id="name" placeholder="Enter name">
         </div>
         <div class="form-group">
             <label for="birthday">Birthday</label>
-            <input type="text" class="form-control" id="birthday" placeholder="Enter birthday">
+            <input ng-model="profile.birthday" type="text" class="form-control" id="birthday" placeholder="Enter birthday">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

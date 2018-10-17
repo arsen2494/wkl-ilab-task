@@ -11,8 +11,8 @@
             </ul>
         </nav>
         <div class="tab-content p-5">
-            <profile ng-show="currentTab === tabs.PROFILE"></profile>
-            <edit-profile ng-show="currentTab === tabs.EDIT_PROFILE"></edit-profile>
+            <profile ng-if="currentTab === tabs.PROFILE"></profile>
+            <edit-profile ng-if="currentTab === tabs.EDIT_PROFILE"></edit-profile>
         </div>
     </div>
 </div>

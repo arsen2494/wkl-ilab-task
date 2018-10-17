@@ -37,20 +37,24 @@
                     .post('/api/auth/login', credentials)
                     .then(function (data) {
                         setAuth(data.data.user);
-                        toastr.success(`Hello ${$rootScope.currentUser.name}!`, 'Success!');
+                        toastr.success(`Hello ${$rootScope.currentUser.name}.`, 'Success!');
 
                         return data;
                     });
             };
+
             authServiceInstance.logout = function () {
                 setAuth(null);
             };
+
             authServiceInstance.getCurrentUser = function () {
                 return decodeUser();
             };
+
             authServiceInstance.isLoggedIn = function () {
                 return !!$window.sessionStorage.getItem('token');
             };
+
             authServiceInstance.initAuth = function () {
                 if (!this.isLoggedIn()) {
                     setAuth(null);
@@ -59,6 +63,8 @@
                     setAuth(user);
                 }
             };
+
+            authServiceInstance.setAuth = setAuth;
 
             return authServiceInstance;
         }]);
