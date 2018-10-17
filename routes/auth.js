@@ -18,22 +18,27 @@ router.post('/login', (req, res) => {
 
     if (email === user.email && password === user.password) {
         delete user.password;
-        res.json({
-            success: true,
-            user
-        })
+
+        setTimeout(() => {
+            res.json({
+                success: true,
+                user
+            });
+        }, 2000)
     } else {
-        res.status(400).json({
-            success: false,
-            email: {
-                valid: user.email === email,
-                message: user.email === email ? null : 'Invalid email.'
-            },
-            password: {
-                valid: user.password === password,
-                message: user.password === password ? null : 'Invalid password'
-            }
-        });
+        setTimeout(() => {
+            res.status(400).json({
+                success: false,
+                email: {
+                    valid: user.email === email,
+                    message: user.email === email ? null : 'Invalid email.'
+                },
+                password: {
+                    valid: user.password === password,
+                    message: user.password === password ? null : 'Invalid password'
+                }
+            });
+        }, 3000);
     }
 });
 

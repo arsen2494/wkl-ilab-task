@@ -8,8 +8,10 @@
             $scope.password = '';
             $scope.onSubmit = onSubmit;
             $scope.inputHasError = inputHasError;
+            $scope.loading = false;
 
             function onSubmit(form) {
+                $scope.loading = true;
                 const {email, password} = $scope;
                 const credentials = {
                     email,
@@ -27,7 +29,8 @@
                         if (reason.status === 400 && !reason.data.success) {
                             form.email.$error.wrong = true;
                         }
-                    });
+                    })
+                    .finally(() => $scope.loading = false);
             }
 
             function inputHasError(form, fieldName) {
