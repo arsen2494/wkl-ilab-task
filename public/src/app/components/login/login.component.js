@@ -7,6 +7,7 @@
             $scope.email = '';
             $scope.password = '';
             $scope.onSubmit = onSubmit;
+            $scope.inputHasError = inputHasError;
 
             function onSubmit() {
                 const {email, password} = $scope;
@@ -23,6 +24,16 @@
                             $location.path('/dashboard');
                         }
                     });
+            }
+
+            function inputHasError(form, fieldName) {
+                if (form[fieldName].$invalid && form[fieldName].$touched) {
+                    return {
+                        'is-invalid': true
+                    }
+                }
+
+                return false;
             }
         }])
         .component('login', {
