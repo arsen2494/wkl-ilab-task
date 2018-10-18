@@ -1,14 +1,93 @@
 <div>
     <h3>Edit Profile</h3>
-    <form novalidate name="form" ng-submit="onSubmit()">
+    <form novalidate name="userForm" ng-submit="onSubmit()">
         <div class="form-group">
             <label for="name">Name</label>
-            <input ng-model="profile.name" type="text" class="form-control" id="name" placeholder="Enter name">
+            <input
+                    name="name"
+                    ng-model="profile.name"
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    placeholder="Enter name"
+                    ng-class="inputHasError(userForm.name)"
+                    required
+                    unique-username
+            >
+            <small id="nameHelp" class="form-text text-muted">Hint: Names "User" and "Username" are busy.</small>
+            <div ng-show="userForm.name.$error.required" class="invalid-feedback">Name is required.</div>
+            <div ng-show="userForm.name.$pending.uniqueUsername && userForm.name.$touched">
+                <i class='fa fa-spinner fa-spin'></i>
+                Checking username...
+            </div>
+            <div ng-show="userForm.name.$error.uniqueUsername"
+                 class="invalid-feedback">This username is already taken!
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input
+                    ng-model="profile.age"
+                    type="text"
+                    class="form-control"
+                    id="age"
+                    placeholder="Enter age"
+                    name="age"
+                    required
+                    integer="[18, 65]"
+                    ng-class="inputHasError(userForm.age)"
+            >
+            <div ng-show="userForm.age.$error.required" class="invalid-feedback">Age is required.</div>
+            <div ng-show="userForm.age.$error.integer" class="invalid-feedback">Age must be integer number between 18
+                and 65.
+            </div>
         </div>
         <div class="form-group">
             <label for="birthday">Birthday</label>
-            <input ng-model="profile.birthday" type="text" class="form-control" id="birthday" placeholder="Enter birthday">
+            <input
+                    ng-model="profile.birthday"
+                    type="text"
+                    class="form-control"
+                    id="birthday"
+                    placeholder="Enter birthday"
+                    name="birthday"
+                    required
+                    ng-class="inputHasError(userForm.birthday)"
+            >
+            <div ng-show="userForm.birthday.$error.required" class="invalid-feedback">Birthday is required.</div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <label for="dayOfLogin">Day of login</label>
+            <input
+                    ng-model="profile.dayOfLogin"
+                    type="text"
+                    class="form-control"
+                    id="dayOfLogin"
+                    placeholder="Day of login"
+                    name="dayOfLogin"
+                    required
+                    ng-class="inputHasError(userForm.dayOfLogin)"
+            >
+            <div ng-show="userForm.dayOfLogin.$error.required" class="invalid-feedback">Day of login is required.</div>
+        </div>
+        <div class="form-group">
+            <label for="dayOfNextNotification">Day of notification</label>
+            <input
+                    ng-model="profile.dayOfNextNotification"
+                    type="text"
+                    class="form-control"
+                    id="dayOfNextNotification"
+                    placeholder="Day of notification"
+                    name="dayOfNextNotification"
+                    required
+                    ng-class="inputHasError(userForm.dayOfNextNotification)"
+            >
+            <div ng-show="userForm.dayOfNextNotification.$error.required" class="invalid-feedback">Day of next
+                notification is required.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">
+            <i ng-show="loading" class="fa fa-spinner fa-spin"></i>&nbsp;Submit
+        </button>
     </form>
 </div>

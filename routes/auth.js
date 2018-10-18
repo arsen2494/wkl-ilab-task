@@ -6,7 +6,7 @@ router.post('/login', (req, res) => {
     // Mock Data
     const email = req.body.email;
     const password = req.body.password;
-    const birthday = new Date(2001, 1);
+    const birthday = new Date(1994, 1);
 
     user = {
         ...user,

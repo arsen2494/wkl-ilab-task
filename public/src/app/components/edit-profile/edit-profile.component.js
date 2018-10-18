@@ -5,6 +5,7 @@
         .module('app')
         .controller('EditProfileCtrl', ['$scope', 'SpinnerService', 'UserService', 'toastr', function ($scope, SpinnerService, UserService, toastr) {
             $scope.onSubmit = onSubmit;
+            $scope.inputHasError = inputHasError;
 
             getProfile();
 
@@ -18,19 +19,25 @@
                     });
             }
 
-            function onSubmit() {
-                const {name, birthday} = $scope.profile;
-                const body = {
-                    name,
-                    birthday
+            function inputHasError(formControl) {
+                return {
+                    'is-invalid': formControl.$invalid && formControl.$touched
                 };
+            }
 
-                UserService
-                    .updateProfile(body)
-                    .then(() => {
-                        $scope.$emit('changeTab');
-                        toastr.success('Updated Successfully.', 'Success!');
-                    });
+            function onSubmit() {
+                // const {name, birthday} = $scope.profile;
+                // const body = {
+                //     name,
+                //     birthday
+                // };
+                //
+                // UserService
+                //     .updateProfile(body)
+                //     .then(() => {
+                //         $scope.$emit('changeTab');
+                //         toastr.success('Updated Successfully.', 'Success!');
+                //     });
             }
         }])
         .component('editProfile', {
