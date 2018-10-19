@@ -13,9 +13,11 @@
                     ng-class="inputHasError(userForm.name)"
                     required
                     unique-username
+                    username
             >
             <small id="nameHelp" class="form-text text-muted">Hint: Names "User" and "Username" are busy.</small>
             <div ng-show="userForm.name.$error.required" class="invalid-feedback">Name is required.</div>
+            <div ng-show="userForm.name.$error.username" class="invalid-feedback">INVALID USERNAME...</div>
             <div ng-show="userForm.name.$pending.uniqueUsername && userForm.name.$touched">
                 <i class='fa fa-spinner fa-spin'></i>
                 Checking username...

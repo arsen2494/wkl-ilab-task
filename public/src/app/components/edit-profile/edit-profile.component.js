@@ -14,7 +14,7 @@
                 UserService
                     .me()
                     .then(data => {
-                        $scope.profile = data;
+                        $scope.profile = JSON.parse(JSON.stringify(data));
                         SpinnerService.hideSpinner();
                     });
             }
