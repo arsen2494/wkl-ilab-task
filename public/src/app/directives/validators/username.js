@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    const CAMEL_CASE_REGEXP = /(.+?)([A-Z])/;
+    const NAME_REGEXP = /^([A-z][A-Za-z]*\s*[A-Za-z]*)$/;
 
     angular
         .module('app')
@@ -14,7 +14,7 @@
                             return true;
                         }
 
-                        if (CAMEL_CASE_REGEXP.test(viewValue)) {
+                        if (!NAME_REGEXP.test(viewValue)) {
                             return false;
                         }
 
