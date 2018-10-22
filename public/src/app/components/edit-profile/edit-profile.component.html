@@ -54,9 +54,11 @@
                     placeholder="Enter birthday"
                     name="birthday"
                     required
+                    date
                     ng-class="inputHasError(userForm.birthday)"
             >
             <div ng-show="userForm.birthday.$error.required" class="invalid-feedback">Birthday is required.</div>
+            <div ng-show="userForm.birthday.$error.date" class="invalid-feedback">INVALID FORMAT!!!</div>
         </div>
         <div class="form-group">
             <label for="dayOfLogin">Day of login</label>
@@ -68,9 +70,11 @@
                     placeholder="Day of login"
                     name="dayOfLogin"
                     required
+                    date
                     ng-class="inputHasError(userForm.dayOfLogin)"
             >
             <div ng-show="userForm.dayOfLogin.$error.required" class="invalid-feedback">Day of login is required.</div>
+            <div ng-show="userForm.dayOfLogin.$error.date" class="invalid-feedback">INVALID FORMAT!!!</div>
         </div>
         <div class="form-group">
             <label for="dayOfNextNotification">Day of notification</label>
@@ -82,10 +86,13 @@
                     placeholder="Day of notification"
                     name="dayOfNextNotification"
                     required
+                    date
                     ng-class="inputHasError(userForm.dayOfNextNotification)"
             >
             <div ng-show="userForm.dayOfNextNotification.$error.required" class="invalid-feedback">Day of next
                 notification is required.
+            </div>
+            <div ng-show="userForm.dayOfNextNotification.$error.date" class="invalid-feedback">INVALID FORMAT!!!
             </div>
         </div>
         <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">
