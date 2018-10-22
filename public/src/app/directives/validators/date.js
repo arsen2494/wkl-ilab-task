@@ -12,11 +12,11 @@
                 require: 'ngModel',
                 link: function (scope, el, attrs, ctrl) {
                     ctrl.$validators.date = function (modelValue, viewValue) {
-                        if (ctrl.$isEmpty(modelValue)) {
+                        if (ctrl.$isEmpty(viewValue)) {
                             return true;
                         }
 
-                        if (DATE_REGEXP_1.test(modelValue) || DATE_REGEXP_2.test(modelValue) || DATE_REGEXP_3.test(modelValue)) {
+                        if (DATE_REGEXP_1.test(viewValue) || DATE_REGEXP_2.test(viewValue) || DATE_REGEXP_3.test(viewValue)) {
                             return true;
                         }
 
