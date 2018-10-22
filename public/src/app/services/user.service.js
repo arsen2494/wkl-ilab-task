@@ -4,9 +4,9 @@
     angular
         .module('app')
         .factory('UserService', ['$q', '$rootScope', 'AuthService', function ($q, $rootScope, AuthService) {
-            const userServiceinstance = {};
+            const userServiceInstance = {};
 
-            userServiceinstance.me = function () {
+            userServiceInstance.me = function () {
                 const defer = $q.defer();
 
                 setTimeout(() => {
@@ -16,20 +16,19 @@
                 return defer.promise;
             };
 
-            userServiceinstance.updateProfile = function (body) {
+            userServiceInstance.updateProfile = function (body) {
                 const defer = $q.defer();
                 const user = {
                     ...$rootScope.currentUser,
-                    ...body,
-                    age: new Date().getFullYear() - new Date(body.birthday).getFullYear()
+                    ...body
                 };
 
                 AuthService.setAuth(user);
-                defer.resolve(user);
+                setTimeout(() => defer.resolve(user), 3000);
 
                 return defer.promise;
             };
 
-            return userServiceinstance;
+            return userServiceInstance;
         }]);
 })();

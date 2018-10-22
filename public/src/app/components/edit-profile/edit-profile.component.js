@@ -6,6 +6,7 @@
         .controller('EditProfileCtrl', ['$scope', 'SpinnerService', 'UserService', 'toastr', function ($scope, SpinnerService, UserService, toastr) {
             $scope.DATE_FORMAT = 'YYYY-MM-DD';
             $scope.DATE_FORMAT_ERR_MESSAGE = 'INVALID DATE FORMAT!!!! TO BE CHANGED!!!'; //TODO change message
+            $scope.loading = false;
             $scope.onSubmit = onSubmit;
             $scope.inputHasError = inputHasError;
 
@@ -27,19 +28,33 @@
                 };
             }
 
-            function onSubmit() {
-                // const {name, birthday} = $scope.profile;
-                // const body = {
-                //     name,
-                //     birthday
-                // };
-                //
-                // UserService
-                //     .updateProfile(body)
-                //     .then(() => {
-                //         $scope.$emit('changeTab');
-                //         toastr.success('Updated Successfully.', 'Success!');
-                //     });
+            function onSubmit(form) {
+                if (form.$valid) {
+                    $scope.loading = true;
+
+                    const {
+                        name,
+                        age,
+                        birthday,
+                        dayOfLogin,
+                        dayOfNextNotification
+                    } = $scope.profile;
+                    const body = {
+                        name,
+                        age,
+                        birthday,
+                        dayOfLogin,
+                        dayOfNextNotification
+                    };
+
+                    UserService
+                        .updateProfile(body)
+                        .then(() => {
+                            $scope.$emit('changeTab');
+                            toastr.success('Updated Successfully.', 'Success!');
+                            $scope.loading = false;
+                        });
+                }
             }
         }])
         .component('editProfile', {
