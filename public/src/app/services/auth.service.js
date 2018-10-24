@@ -20,52 +20,63 @@
 
             return authTokenServiceInstance;
         }])
-        .factory('AuthService', ['$rootScope', '$http', '$window', '$location', 'toastr', 'AuthTokenService', function ($rootScope, $http, $window, $location, toastr, AuthTokenService) {
-            const authServiceInstance = {};
+        .factory('AuthService', [
+            '$rootScope',
+            '$http',
+            '$window',
+            '$location',
+            '$filter',
+            'toastr',
+            'AuthTokenService',
+            function ($rootScope, $http, $window, $location, $filter, toastr, AuthTokenService) {
+                const authServiceInstance = {};
 
-            function setAuth(user) {
-                AuthTokenService.setToken(user);
-                $rootScope.currentUser = user;
-            }
-
-            function decodeUser() {
-                return JSON.parse(atob($window.sessionStorage.getItem('token')));
-            }
-
-            authServiceInstance.login = function (credentials) {
-                return $http
-                    .post('/api/auth/login', credentials)
-                    .then(function (data) {
-                        setAuth(data.data.user);
-                        toastr.success(`Hello ${$rootScope.currentUser.name}.`, 'Success!');
-
-                        return data;
-                    });
-            };
-
-            authServiceInstance.logout = function () {
-                setAuth(null);
-            };
-
-            authServiceInstance.getCurrentUser = function () {
-                return decodeUser();
-            };
-
-            authServiceInstance.isLoggedIn = function () {
-                return !!$window.sessionStorage.getItem('token');
-            };
-
-            authServiceInstance.initAuth = function () {
-                if (!this.isLoggedIn()) {
-                    setAuth(null);
-                } else {
-                    const user = this.getCurrentUser();
-                    setAuth(user);
+                function setAuth(user) {
+                    AuthTokenService.setToken(user);
+                    $rootScope.currentUser = user;
                 }
-            };
 
-            authServiceInstance.setAuth = setAuth;
+                function decodeUser() {
+                    return JSON.parse(atob($window.sessionStorage.getItem('token')));
+                }
 
-            return authServiceInstance;
-        }]);
+                authServiceInstance.login = function (credentials) {
+                    return $http
+                        .post('/api/auth/login', credentials)
+                        .then(function (data) {
+                            setAuth(data.data.user);
+                            const message = `${$filter('translate')('HELLO')} ${$rootScope.currentUser.name}.`;
+                            const title = `${$filter('translate')('SUCCESS')}!`;
+
+                            toastr.success(message, title);
+
+                            return data;
+                        });
+                };
+
+                authServiceInstance.logout = function () {
+                    setAuth(null);
+                };
+
+                authServiceInstance.getCurrentUser = function () {
+                    return decodeUser();
+                };
+
+                authServiceInstance.isLoggedIn = function () {
+                    return !!$window.sessionStorage.getItem('token');
+                };
+
+                authServiceInstance.initAuth = function () {
+                    if (!this.isLoggedIn()) {
+                        setAuth(null);
+                    } else {
+                        const user = this.getCurrentUser();
+                        setAuth(user);
+                    }
+                };
+
+                authServiceInstance.setAuth = setAuth;
+
+                return authServiceInstance;
+            }]);
 })();

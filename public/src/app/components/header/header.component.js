@@ -3,12 +3,21 @@
 
     angular
         .module('app')
-        .controller('HeaderCtrl', ['$scope', '$location', 'AuthService', function ($scope, $location, AuthService) {
+        .controller('HeaderCtrl', ['$scope', '$location', '$translate', 'AuthService', function ($scope, $location, $translate, AuthService) {
             $scope.onLogout = onLogout;
+            $scope.languageKeys = {
+                EN: 'en',
+                RU: 'ru'
+            };
+            $scope.changeLanguage = changeLanguage;
 
             function onLogout() {
                 AuthService.logout();
                 $location.path('/');
+            }
+
+            function changeLanguage(key) {
+                $translate.use(key);
             }
         }])
         .component('headerComponent', {

@@ -3,10 +3,12 @@
         <nav>
             <ul class="nav nav-tabs">
                 <li class="nav-item" ng-click="changeTab(tabs.PROFILE)">
-                    <a class="nav-link" ng-class="{'active': currentTab === tabs.PROFILE}">Profile</a>
+                    <a class="nav-link" ng-class="{'active': currentTab === tabs.PROFILE}">{{ 'PROFILE' | translate
+                        }}</a>
                 </li>
                 <li class="nav-item" ng-click="changeTab(tabs.EDIT_PROFILE)">
-                    <a class="nav-link" ng-class="{'active': currentTab === tabs.EDIT_PROFILE}">Edit Profile</a>
+                    <a class="nav-link" ng-class="{'active': currentTab === tabs.EDIT_PROFILE}">{{ 'EDIT' | translate }}
+                        {{ 'PROFILE' | translate }}</a>
                 </li>
             </ul>
         </nav>

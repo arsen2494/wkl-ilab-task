@@ -5,7 +5,6 @@
         .module('app')
         .controller('EditProfileCtrl', ['$scope', 'SpinnerService', 'UserService', 'toastr', function ($scope, SpinnerService, UserService, toastr) {
             $scope.DATE_FORMAT = 'YYYY-MM-DD';
-            $scope.DATE_FORMAT_ERR_MESSAGE = 'INVALID DATE FORMAT!!!! TO BE CHANGED!!!'; //TODO change message
             $scope.loading = false;
             $scope.onSubmit = onSubmit;
             $scope.inputHasError = inputHasError;

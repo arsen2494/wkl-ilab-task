@@ -1,8 +1,8 @@
 <div>
-    <h3>Edit Profile</h3>
+    <h3>{{ 'EDIT' | translate }} {{ 'PROFILE' | translate }}</h3>
     <form novalidate name="userForm" ng-submit="onSubmit(userForm)">
         <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">{{ 'NAME' | translate }}</label>
             <input
                     name="name"
                     ng-model="profile.name"
@@ -15,19 +15,25 @@
                     unique-username
                     username
             >
-            <small id="nameHelp" class="form-text text-muted">Hint: Names "User" and "Username" are busy.</small>
-            <div ng-show="userForm.name.$error.required" class="invalid-feedback">Name is required.</div>
-            <div ng-show="userForm.name.$error.username" class="invalid-feedback">INVALID USERNAME...</div>
+            <small id="nameHelp" class="form-text text-muted">{{ 'HINT' | translate }}: {{ 'NAMES' | translate }} "User"
+                {{ 'AND' | translate }} "Username" {{ 'BUSY' | translate }}.
+            </small>
+            <div ng-show="userForm.name.$error.required" class="invalid-feedback">{{ 'NAME' | translate }} {{
+                'IS_REQUIRED' | translate }}.
+            </div>
+            <div ng-show="userForm.name.$error.username" class="invalid-feedback">{{ 'INVALID_USERNAME_MESSAGE' |
+                translate }}
+            </div>
             <div ng-show="userForm.name.$pending.uniqueUsername && userForm.name.$touched">
                 <i class='fa fa-spinner fa-spin'></i>
-                Checking username...
+                {{ 'CHECKING' | translate }}...
             </div>
             <div ng-show="userForm.name.$error.uniqueUsername"
-                 class="invalid-feedback">This username is already taken!
+                 class="invalid-feedback">{{ 'TAKEN_USERNAME' | translate }}!
             </div>
         </div>
         <div class="form-group">
-            <label for="age">Age</label>
+            <label for="age">{{ 'AGE' | translate }}</label>
             <input
                     ng-model="profile.age"
                     type="text"
@@ -39,13 +45,14 @@
                     integer="[18, 65]"
                     ng-class="inputHasError(userForm.age)"
             >
-            <div ng-show="userForm.age.$error.required" class="invalid-feedback">Age is required.</div>
-            <div ng-show="userForm.age.$error.integer" class="invalid-feedback">Age must be integer number between 18
-                and 65.
+            <div ng-show="userForm.age.$error.required" class="invalid-feedback">{{ 'AGE' | translate }} {{
+                'IS_REQUIRED' | translate }}.
+            </div>
+            <div ng-show="userForm.age.$error.integer" class="invalid-feedback">{{ 'INVALID_AGE_MESSAGE' | translate }}
             </div>
         </div>
         <div class="form-group">
-            <label for="birthday">Birthday</label>
+            <label for="birthday">{{ 'BIRTHDAY' | translate }}</label>
             <input
                     ng-model="profile.birthday"
                     type="text"
@@ -58,11 +65,15 @@
                     ng-class="inputHasError(userForm.birthday)"
                     format-date="{{ DATE_FORMAT }}"
             >
-            <div ng-show="userForm.birthday.$error.required" class="invalid-feedback">Birthday is required.</div>
-            <div ng-show="userForm.birthday.$error.date" class="invalid-feedback">{{ DATE_FORMAT_ERR_MESSAGE }}</div>
+            <div ng-show="userForm.birthday.$error.required" class="invalid-feedback">{{ 'BIRTHDAY' | translate }} {{
+                'IS_REQUIRED' | translate }}.
+            </div>
+            <div ng-show="userForm.birthday.$error.date" class="invalid-feedback">{{ 'INVALID_DATE_MESSAGE' | translate
+                }}
+            </div>
         </div>
         <div class="form-group">
-            <label for="dayOfLogin">Day of login</label>
+            <label for="dayOfLogin">{{ 'LOGIN_DAY' | translate }}</label>
             <input
                     ng-model="profile.dayOfLogin"
                     type="text"
@@ -75,11 +86,15 @@
                     ng-class="inputHasError(userForm.dayOfLogin)"
                     format-date="{{ DATE_FORMAT }}"
             >
-            <div ng-show="userForm.dayOfLogin.$error.required" class="invalid-feedback">Day of login is required.</div>
-            <div ng-show="userForm.dayOfLogin.$error.date" class="invalid-feedback">{{ DATE_FORMAT_ERR_MESSAGE }}</div>
+            <div ng-show="userForm.dayOfLogin.$error.required" class="invalid-feedback">{{ 'LOGIN_DAY' | translate }} {{
+                'IS_REQUIRED' | translate }}.
+            </div>
+            <div ng-show="userForm.dayOfLogin.$error.date" class="invalid-feedback">{{ 'INVALID_DATE_MESSAGE' |
+                translate }}
+            </div>
         </div>
         <div class="form-group">
-            <label for="dayOfNextNotification">Day of notification</label>
+            <label for="dayOfNextNotification">{{ 'NOTIFICATION_DAY' | translate }}</label>
             <input
                     ng-model="profile.dayOfNextNotification"
                     type="text"
@@ -92,15 +107,15 @@
                     ng-class="inputHasError(userForm.dayOfNextNotification)"
                     format-date="{{ DATE_FORMAT }}"
             >
-            <div ng-show="userForm.dayOfNextNotification.$error.required" class="invalid-feedback">Day of next
-                notification is required.
+            <div ng-show="userForm.dayOfNextNotification.$error.required" class="invalid-feedback">{{ 'NOTIFICATION_DAY'
+                | translate }} {{ 'IS_REQUIRED' | translate }}.
             </div>
             <div ng-show="userForm.dayOfNextNotification.$error.date" class="invalid-feedback">{{
-                DATE_FORMAT_ERR_MESSAGE }}
+                'INVALID_DATE_MESSAGE' | translate }}
             </div>
         </div>
-        <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">
-            <i ng-show="loading" class="fa fa-spinner fa-spin"></i>&nbsp;Submit
+        <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid || loading">
+            <i ng-show="loading" class="fa fa-spinner fa-spin"></i>&nbsp;{{ 'SUBMIT' | translate }}
         </button>
     </form>
 </div>
