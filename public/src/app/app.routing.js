@@ -27,12 +27,19 @@
                 component: 'dashboard',
                 auth: true
             };
+            const userListState = {
+                name: 'users',
+                url: '/user-list',
+                component: 'userList',
+                auth: true
+            };
 
             $locationProvider.html5Mode(true);
             $stateProvider.state(baseState);
             $stateProvider.state(loginState);
             $stateProvider.state(forgotPasswordState);
             $stateProvider.state(dashboardState);
+            $stateProvider.state(userListState);
             $urlRouterProvider.otherwise("/login");
         }]);
 })();

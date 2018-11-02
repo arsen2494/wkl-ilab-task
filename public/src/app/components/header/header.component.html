@@ -19,6 +19,8 @@
                         {{ $root.currentUser.name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" ui-sref="users">Users</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" ng-click="onLogout()">Logout</a>
                     </div>
                 </li>

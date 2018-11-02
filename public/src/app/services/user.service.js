@@ -3,7 +3,7 @@
 
     angular
         .module('app')
-        .factory('UserService', ['$q', '$rootScope', 'AuthService', function ($q, $rootScope, AuthService) {
+        .factory('UserService', ['$q', '$rootScope', '$http', 'AuthService', function ($q, $rootScope, $http, AuthService) {
             const userServiceInstance = {};
 
             userServiceInstance.me = function () {
@@ -28,6 +28,10 @@
 
                 return defer.promise;
             };
+
+            userServiceInstance.getAll = function () {
+                return $http.get('/api/users');
+            }
 
             return userServiceInstance;
         }]);

@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const config = require('./config');
 const path = require('path');
 const auth = require('./routes/auth');
+const users = require('./routes/users');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/auth', auth);
+app.use('/api/users', users);
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/src/index.html'));

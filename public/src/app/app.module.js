@@ -6,7 +6,8 @@
             'ui.router',
             'ui.router.state.events',
             'toastr',
-            'pascalprecht.translate'
+            'pascalprecht.translate',
+            'users'
         ])
         .config(function ($translateProvider) {
             $translateProvider.useStaticFilesLoader({
