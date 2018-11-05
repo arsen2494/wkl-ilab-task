@@ -1,0 +1,11 @@
+.user-list {
+    background: #eee;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.user-item-container {
+    height: 70vh;
+    min-height: 50vh;
+    overflow-y: scroll;
+}
